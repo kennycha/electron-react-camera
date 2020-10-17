@@ -1,68 +1,57 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Electron React with Camera
 
-## Available Scripts
+- Init with CRA
 
-In the project directory, you can run:
+  ```bash
+  $ npx create-react-app electron-react-camera
+  ```
 
-### `npm start`
+- electron 설치
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  ```bash
+  $ npm i -D electron electron-builder
+  ```
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- 기타 개발 도구
 
-### `npm test`
+  ```bash
+  $ npm i electron-is-dev
+  ```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  - `electron-is-dev` : Electron이 개발 환경에서 실행 중인지 확인
 
-### `npm run build`
+  ```bash
+  $ npm i -D concurrently wait-on cross-env
+  ```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - `concurrently` : 여러 명령어를 병렬적으로 실행할 수 있게 도와주는 명령어
+  - `wait-on` : 특정 포트, 파일, HTTP 자원 등이 활성화될 때까지 기다려주는 크로스 플랫폼 명령어
+  - `cross-env` : 프로그램을 CLI 환경에서 실행시킬 때에 Windows, Linux, macOS 등 OS에 관계없이 동일한 문장으로 환경변수를 설정할 수 있게 도와주는 명령어
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- `public/electron.js` 파일 생성
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  ```
+  
+  ```
 
-### `npm run eject`
+- `package.json` 파일 수정
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  ```json
+  {
+  	...,
+      "main": "public/electron.js",
+  	"homepage": "./",
+      "scripts": {
+      	"react-start": "react-scripts start",
+  	    "react-build": "react-scripts build",
+  	    "react-test": "react-scripts test",
+  	    "react-eject": "react-scripts eject",
+  	    "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
+  	    "build": "npm run react-build && electron-builder",
+  	    "release": "npm run react-build && electron-builder --publish=always"
+    	},
+  	...
+  }
+  ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- 
