@@ -1,6 +1,6 @@
-import { app, BrowserWindow } from "electron";
-import * as isDev from "electron-is-dev";
-import * as path from "path";
+const { app, BrowserWindow } = require("electron");
+const isDev = require("electron-is-dev");
+const path = require("path");
 
 let mainWindow;
 
@@ -19,6 +19,7 @@ const createWindow = () => {
   if (isDev) {
     // 개발 중에는 로컬 호스트에서 로드
     mainWindow.loadURL("http://localhost:3000");
+    // 개발자 도구 연 상태로 로드
     mainWindow.webContents.openDevTools();
   } else {
     // 배포 시 패키지 내부 리소스에 접근
