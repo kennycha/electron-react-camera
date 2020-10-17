@@ -9,7 +9,9 @@
     "electron-is-dev": "^1.2.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "react-webcam": "^5.2.1",
+    "styled-components": "^5.2.0"
   },
   "main": "public/electron.js",
   "homepage": "./",
